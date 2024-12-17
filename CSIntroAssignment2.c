@@ -9,15 +9,18 @@ void Question4(int);
 void main()
 {
 	int n;
-	//printf("Question 1, enter n:");
-	//scanf_s("%d", &n);
-	//printf("%d", Question1(n));
-	//printf("Question 2, enter n:");
-	//scanf_s("%d", &n);
-	//Question2(n);
-	//printf("Question 3, enter n:");
-	//scanf_s("%d", &n);
-	//printf("%d", Question3(n));
+	printf("Question 1, enter n:");
+	scanf_s("%d", &n);
+	printf("%d", Question1(n));
+	printf("Question 2, enter n:");
+	scanf_s("%d", &n);
+	Question2(n);
+	printf("Question 3, enter n:");
+	scanf_s("%d", &n);
+	printf("%d", Question3(n));
+	printf("Question 4, enter n:");
+	scanf_s("%d", &n);
+	Question4(n);
 
 }
 
@@ -152,8 +155,38 @@ int Question3(int p_n)
 		return 0;
 	}
 }
-void Question4(int p_n) 
-{
 
+
+void find_divisors_sum(int num, int* sum) 
+{
+	int i;
+	*sum = 1;
+	for (i = 2; i * i <= num; i++) {
+		if (num % i == 0) {
+			*sum += i;
+			if (i != num / i) {
+				*sum += num / i;
+			}
+		}
+	}
 }
+
+void Question4(int p_n)
+{
+	int a, b, a_sum, b_sum;
+
+	for (a = 2; a < p_n; a++) {
+		find_divisors_sum(a, &a_sum);
+		b = a_sum;
+
+		if (b > a && b < p_n) {
+			find_divisors_sum(b, &b_sum);
+			if (b_sum == a) {
+				printf("%d and %d are amicable.\n", a, b);
+			}
+		}
+	}
+}
+
+
 
